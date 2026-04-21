@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1776659000568",
+    "email": "calvinpgolson@gmail.com",
+    "password": "pampat",
+    "createdAt": "2026-04-20T04:23:20.568Z",
+    "is_pro": false,
+    "stripe_customer_id": "cus_UMvbskbUVSEEiP",
+    "stripe_subscription_id": null,
+    "scans_used": 0
+  },
+  {
+    "id": "1776700397220",
+    "email": "cgolson@gmail.com",
+    "password": "ppampat",
+    "createdAt": "2026-04-20T15:53:17.239Z",
+    "is_pro": false,
+    "stripe_customer_id": "cus_UN4HD1eJMotOE6",
+    "stripe_subscription_id": null
+  }
+]

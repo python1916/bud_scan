@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Analyzer — Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <header class="header auth-header">
+        <a class="brand" href="index.html">Bug Analyzer</a>
+      </header>
+      <main class="auth-main">
+        <div class="auth-card">
+          <h2>Sign in or create an account</h2>
+          <p>Use your email and password to access the analyzer.</p>
+
+          <form id="signupForm" class="auth-form">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" placeholder="you@example.com" required />
+            <label for="signupPassword">Password</label>
+            <input id="signupPassword" type="password" placeholder="Enter password" required minlength="6" />
+            <div id="signupError" class="form-error"></div>
+            <button type="submit" class="button button-primary">Create account</button>
+          </form>
+
+          <div class="divider">Or</div>
+
+          <form id="loginForm" class="auth-form">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="you@example.com" required />
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter password" required minlength="6" />
+            <div id="loginError" class="form-error"></div>
+            <button type="submit" class="button button-secondary">Login</button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
