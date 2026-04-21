@@ -11,8 +11,26 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const FRONTEND_PATH = path.join(__dirname, '..', 'frontend');
 
-// 🔥 CORS FIRST (right after app = express())
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://bud-scan-nrqb.vercel.app",
+  "https://bud-scan.onrender.com" // ✅ ADD THIS
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS blocked"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.options("*", cors());
 
 // Stripe webhook (must be after CORS but before express.json())
