@@ -97,7 +97,12 @@ app.post(
   }
 );
 
-app.use(cors({ origin: true }));
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://bug-scan.vercel.app"
+  ]
+}));
 app.use(express.json());
 
 // Dashboard endpoint
