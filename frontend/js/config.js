@@ -6,4 +6,4 @@ const apiConfig = {
 };
 
 // Global reference for easier access
-window.apiBase = apiConfig.baseUrl;
+window.apiBase =  "https://super-bug.onrender.com";
