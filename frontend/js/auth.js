@@ -11,6 +11,13 @@ function clearError(element) {
 }
 
 async function authRequest(endpoint, payload) {
+  console.log("endpoint:", endpoint);
+  console.log("URL:", `${apiBase}/auth/${endpoint}`);
+
+  if (!endpoint) {
+    throw new Error("Endpoint is missing");
+  }
+
   const response = await fetch(`${apiBase}/auth/${endpoint}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
