@@ -11,6 +11,12 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const FRONTEND_PATH = path.join(__dirname, '..', 'frontend');
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://bud-scan-nrqb.vercel.app"
+];
+
 // Stripe webhook (must be before express.json())
 app.post(
   "/stripe/webhook",
@@ -98,10 +104,17 @@ app.post(
 );
 
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://bud-scan.vercel.app"
-  ]
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow curl/postman
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 app.use(express.json());
 
