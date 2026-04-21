@@ -103,21 +103,27 @@ app.post(
   }
 );
 
+// ✅ CORS FIRST (after webhook only)
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow curl/postman
+    if (!origin) return callback(null, true);
 
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     } else {
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error("CORS blocked"));
     }
   },
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
-app.use(express.json());
+
+// ✅ Handle preflight explicitly
 app.options("*", cors());
+
+// ✅ THEN body parser
+app.use(express.json());
 
 // Dashboard endpoint
 app.get('/api/dashboard', (req, res) => {
